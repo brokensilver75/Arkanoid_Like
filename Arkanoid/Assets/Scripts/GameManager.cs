@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     int lives = 3;
     int level = 1;
 
+    [SerializeField] public float ballSpeed = 250f;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
