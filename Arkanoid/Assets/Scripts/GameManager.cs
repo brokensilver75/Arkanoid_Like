@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    int score = 0;
+    float score = 0;
     int lives = 3;
     int level = 1;
 
+    int[] HighScoreList;
+    List<GameObject> bricksList;
     [SerializeField] public float ballSpeed = 250f;
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        HighScoreList = new int[5];
     }
     // Start is called before the first frame update
     void Start()
     {
-        NewGame();
+        bricksList = new List<GameObject>();
+        NewGame(); 
+        //GameObject.FindWithTag("LevelText").GetComponent<Text>().text = "LEVEL: " + this.level;
     }
 
     // Update is called once per frame
@@ -33,14 +41,14 @@ public class GameManager : MonoBehaviour
         this.score = 0;
         this.lives = 3;
         this.level = 1;
-        Debug.Log("SCORE = " + score + "\nLIVES = " + lives + "\nLEVEL = " + level);
+        
         LoadLevel();
     }
 
     public void NextLevel()
     {
         this.lives = 3;
-        Debug.Log("SCORE = " + score + "\nLIVES = " + lives + "\nLEVEL = " + level);
+        
         LoadLevel();
     }
 
@@ -49,4 +57,52 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level");
         level++;
     }
+
+    public void IncreaseScore(float modifier)
+    {
+        this.score= (this.score + 10 + (modifier*this.score));
+        GameObject.FindWithTag("ScoreText").GetComponent<Text>().text = "SCORE: " + this.score;
+    }
+
+    public void DecreaseLife()
+    {
+        
+        if (lives > 0)
+            this.lives--;
+        else
+        {
+            NewGame();
+        }
+    }
+
+    public void AddtoList(GameObject[] gameObjects)
+    {
+        this.bricksList = gameObjects.ToList();
+    }
+
+    public void RemoveFromList(GameObject gameObject)
+    {
+        this.bricksList.Remove(gameObject);
+        
+    }
+
+    public int GetListCount()
+    {
+        return this.bricksList.Count;
+    }
+
+    /*public void SetHighScore(int setScore)
+    {
+
+        for (int i=0; i<HighScoreList.Count(); i++)
+        {
+            if (setScore > HighScoreList[i])
+            {
+                int temp = HighScoreList[i];
+                HighScoreList[i] = setScore;
+                setScore = temp;
+            }
+        }
+
+    }*/
 }

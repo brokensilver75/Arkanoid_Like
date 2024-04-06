@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Brick: MonoBehaviour
 {
     int brickLives;
+    float modifier = 0;
     [SerializeField] Sprite brick1, brick2, brick3;
-    GameObject drop;
+    
+    GameObject drop, gameManager;
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
         brickLives = Random.Range(0,4);
         switch(brickLives)
         {
@@ -23,8 +27,8 @@ public class Brick: MonoBehaviour
                 this.GetComponent<SpriteRenderer>().sprite = brick3;
                 break;
             case 0:
-                this.GetComponent<SpriteRenderer>().enabled = false;
-                this.GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(this.gameObject);
+                gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
                 break;
         }
     }
@@ -50,6 +54,8 @@ public class Brick: MonoBehaviour
                 break;
             default:
                 Destroy(this.gameObject);
+                gameManager.GetComponent<GameManager>().IncreaseScore(modifier);
+                gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
                 break;
         }
         

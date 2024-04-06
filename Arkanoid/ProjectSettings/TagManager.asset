@@ -8,6 +8,10 @@ TagManager:
   - Brick
   - Ball
   - GameManager
+  - DeathWall
+  - ScoreText
+  - LevelText
+  - SlowBall
   layers:
   - Default
   - TransparentFX

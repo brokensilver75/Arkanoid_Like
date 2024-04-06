@@ -7,6 +7,7 @@ public class Paddle : MonoBehaviour
     Vector3 paddlePos, contactPoint;
     GameObject gameManager;
     [SerializeField] float paddleSpeed;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,10 @@ public class Paddle : MonoBehaviour
     void Update()
     {
         MovePaddle();
+        if (gameManager.GetComponent<GameManager>().GetListCount() == 0)
+        {
+            transform.position = paddlePos;
+        }
     }
 
     void MovePaddle()
@@ -42,10 +47,10 @@ public class Paddle : MonoBehaviour
                contactPoint = other.contacts[0].point;
 
                if (contactPoint.x < paddlePos.x)
-                other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-(Mathf.Abs(paddlePos.x - contactPoint.x)) * gameManager.GetComponent<GameManager>().ballSpeed, gameManager.GetComponent<GameManager>().ballSpeed));
+                other.gameObject.GetComponent<Rigidbody2D>().velocity += (new Vector2(-gameManager.GetComponent<GameManager>().ballSpeed, gameManager.GetComponent<GameManager>().ballSpeed)) * Time.deltaTime;
 
                else
-                other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((Mathf.Abs(paddlePos.x - contactPoint.x)) * gameManager.GetComponent<GameManager>().ballSpeed, gameManager.GetComponent<GameManager>().ballSpeed));
+                other.gameObject.GetComponent<Rigidbody2D>().velocity += (new Vector2(gameManager.GetComponent<GameManager>().ballSpeed, gameManager.GetComponent<GameManager>().ballSpeed)) * Time.deltaTime;
         }
     }
 }
