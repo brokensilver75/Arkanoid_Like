@@ -437,8 +437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51613f7225b5c9f479ff1653c01b5e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 250
+  ballSpeed: 1000
   scoreText: {fileID: 1053532812}
+  normalBall: {fileID: 21300000, guid: 463c380362644497f953579408748dec, type: 3}
+  slowBall: {fileID: 21300000, guid: 759797841011f4184ba4c81ee6e2ff36, type: 3}
+  pierceBall: {fileID: 21300000, guid: 265c91df270c7473eaf7364ff36ce9b5, type: 3}
 --- !u!1 &1007221804
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +573,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.018076897, y: 0}
+  m_Offset: {x: -0.03543806, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -581,7 +584,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.753717, y: 0.32}
+  m_Size: {x: 2.4412193, y: 0.32}
   m_EdgeRadius: 0
 --- !u!1 &1053532810
 GameObject:
@@ -1061,6 +1064,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f9c7e9d10171e4497a356a3450f238, type: 3}
+--- !u!1001 &6420010752432649235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 813.13763
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 537.7045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6323073
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712838361421924525, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371738801562313593, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_Name
+      value: SlowBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371738801562313593, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1075,3 +1139,4 @@ SceneRoots:
   - {fileID: 1583819387}
   - {fileID: 1558115577}
   - {fileID: 1465384786}
+  - {fileID: 6420010752432649235}

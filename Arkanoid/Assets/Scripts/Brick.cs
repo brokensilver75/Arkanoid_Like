@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,14 @@ public class Brick: MonoBehaviour
     int brickLives;
     float modifier = 0;
     [SerializeField] Sprite brick1, brick2, brick3;
+    [SerializeField] GameObject slowBall;
     
     GameObject drop, gameManager;
 
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        brickLives = Random.Range(0,4);
+        brickLives = UnityEngine.Random.Range(0,4);
         switch(brickLives)
         {
             case 1:
@@ -32,11 +34,8 @@ public class Brick: MonoBehaviour
                 break;
         }
     }
-    public Brick(int brickLives)//, GameObject drop)
-    {
-        this.brickLives = brickLives;
-        //this.drop = drop;
-    }
+
+
 
     public void GetHit()
     {
@@ -55,7 +54,9 @@ public class Brick: MonoBehaviour
             default:
                 Destroy(this.gameObject);
                 gameManager.GetComponent<GameManager>().IncreaseScore(modifier);
+                Instantiate(slowBall, transform.position, Quaternion.identity);
                 gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
+
                 break;
         }
         

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         bricksList = new List<GameObject>();
-        NewGame(); 
+        //NewGame(); 
         //GameObject.FindWithTag("LevelText").GetComponent<Text>().text = "LEVEL: " + this.level;
     }
 
@@ -91,18 +91,5 @@ public class GameManager : MonoBehaviour
         return this.bricksList.Count;
     }
 
-    /*public void SetHighScore(int setScore)
-    {
-
-        for (int i=0; i<HighScoreList.Count(); i++)
-        {
-            if (setScore > HighScoreList[i])
-            {
-                int temp = HighScoreList[i];
-                HighScoreList[i] = setScore;
-                setScore = temp;
-            }
-        }
-
-    }*/
+    
 }

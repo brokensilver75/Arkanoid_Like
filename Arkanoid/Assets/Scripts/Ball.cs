@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
@@ -10,7 +11,9 @@ public class Ball : MonoBehaviour
     GameObject gameManager;
     Vector3 initialBallPos;
     [SerializeField] Text scoreText;
+    [SerializeField] Sprite normalBall, slowBall, pierceBall;
     Rigidbody2D ballRb;
+    bool slowed = false, piercing = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,8 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MaintainVelocity(); 
+        
         if (ballRb.velocity.y == 0)
             ballRb.velocity = new Vector2( 0 , gameManager.GetComponent<GameManager>().ballSpeed) * Time.deltaTime;
 
@@ -31,6 +36,11 @@ public class Ball : MonoBehaviour
             transform.position = initialBallPos;
             ballRb.velocity = (new Vector2(0, gameManager.GetComponent<GameManager>().ballSpeed)) * Time.deltaTime;
         }
+    }
+
+    private void MaintainVelocity()
+    {
+        ballRb.velocity = (ballRb.velocity.normalized) * ballSpeed * Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -44,5 +54,22 @@ public class Ball : MonoBehaviour
         {
             gameManager.GetComponent<GameManager>().DecreaseLife();
         }*/
+    }
+
+    public void SlowDownBall()
+    {
+        if (!slowed)
+            StartCoroutine(SlowMoBall());
+    }
+
+    IEnumerator SlowMoBall()
+    {
+        slowed = true;
+        ballSpeed /= 5;
+        GetComponent<SpriteRenderer>().sprite = slowBall;
+        yield return new WaitForSeconds(5);
+        slowed = false;
+        GetComponent<SpriteRenderer>().sprite = normalBall;
+        ballSpeed *= 5;
     }
 }
