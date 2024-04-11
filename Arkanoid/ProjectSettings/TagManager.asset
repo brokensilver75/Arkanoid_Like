@@ -12,6 +12,7 @@ TagManager:
   - ScoreText
   - LevelText
   - SlowBall
+  - PowerUp
   layers:
   - Default
   - TransparentFX

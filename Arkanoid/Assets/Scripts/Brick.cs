@@ -10,6 +10,7 @@ public class Brick: MonoBehaviour
     float modifier = 0;
     [SerializeField] Sprite brick1, brick2, brick3;
     [SerializeField] GameObject slowBall, pierceBall;
+    bool bonus = false;
     //[SerializeField] GameManager gameManager;
     
     GameObject drop, gameManager;
@@ -62,7 +63,7 @@ public class Brick: MonoBehaviour
 
     public void BrickDeath()
     {
-        gameManager.GetComponent<GameManager>().IncreaseScore();
+        gameManager.GetComponent<GameManager>().IncreaseScore(modifier);
         DropStuff(UnityEngine.Random.Range(0, 3));
         gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
         Destroy(this.gameObject);
@@ -80,9 +81,13 @@ public class Brick: MonoBehaviour
         
     }
 
-    public int GetBricklives()
+    IEnumerator Bonus()
     {
-        return brickLives;
+        bonus = true;
+        modifier = 0.1f;
+        yield return new WaitForSeconds(0.1f);
+        modifier = 0;
+        bonus = false;
     }
 
 

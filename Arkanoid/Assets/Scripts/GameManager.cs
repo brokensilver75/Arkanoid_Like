@@ -85,9 +85,9 @@ public class GameManager : MonoBehaviour
         level++;
     }
 
-    public void IncreaseScore()
+    public void IncreaseScore(float modifier)
     {
-        score += 10;
+        score += 10 + (score * modifier);
         GameObject.FindWithTag("ScoreText").GetComponent<Text>().text = "SCORE: " + score;
     }
 
@@ -152,6 +152,11 @@ public class GameManager : MonoBehaviour
             brick.GetComponent<BoxCollider2D>().isTrigger = false;
         }
 
+    }
+
+    public int Getlives()
+    {
+        return lives;
     }
     
 }
