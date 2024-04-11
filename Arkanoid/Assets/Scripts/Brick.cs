@@ -9,13 +9,15 @@ public class Brick: MonoBehaviour
     int brickLives;
     float modifier = 0;
     [SerializeField] Sprite brick1, brick2, brick3;
-    [SerializeField] GameObject slowBall;
+    [SerializeField] GameObject slowBall, pierceBall;
+    //[SerializeField] GameManager gameManager;
     
     GameObject drop, gameManager;
 
     void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        
+        gameManager = GameObject.Find("GameManager");
         brickLives = UnityEngine.Random.Range(0,4);
         switch(brickLives)
         {
@@ -52,12 +54,24 @@ public class Brick: MonoBehaviour
                 this.GetComponent<SpriteRenderer>().sprite = brick3;
                 break;
             default:
-                Destroy(this.gameObject);
-                gameManager.GetComponent<GameManager>().IncreaseScore(modifier);
-                Instantiate(slowBall, transform.position, Quaternion.identity);
+                gameManager.GetComponent<GameManager>().IncreaseScore();
+                //gameManager.GetComponent<GameManager>().SetHighScores(gameManager.GetComponent<GameManager>().GetScore());
+                DropStuff(UnityEngine.Random.Range(0,3));
                 gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
-
+                Destroy(this.gameObject);
                 break;
+        }
+        
+    }
+
+    private void DropStuff(int chance)
+    {
+        switch (chance)
+        {
+            case 0: Instantiate(slowBall, transform.position, Quaternion.identity);
+                    break;
+            case 1: Instantiate(pierceBall, transform.position, Quaternion.identity);
+                    break;
         }
         
     }

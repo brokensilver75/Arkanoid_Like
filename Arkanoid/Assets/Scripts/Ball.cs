@@ -50,16 +50,22 @@ public class Ball : MonoBehaviour
             other.gameObject.GetComponent<Brick>().GetHit();
         }
 
-        /*if (other.gameObject.CompareTag("DeathWall"))
+        if (other.gameObject.CompareTag("DeathWall"))
         {
             gameManager.GetComponent<GameManager>().DecreaseLife();
-        }*/
+        }
     }
 
     public void SlowDownBall()
     {
         if (!slowed)
             StartCoroutine(SlowMoBall());
+    }
+
+    public void PiercingBall()
+    {
+        if (!piercing)
+            StartCoroutine(PierceBall());
     }
 
     IEnumerator SlowMoBall()
@@ -71,5 +77,14 @@ public class Ball : MonoBehaviour
         slowed = false;
         GetComponent<SpriteRenderer>().sprite = normalBall;
         ballSpeed *= 5;
+    }
+
+    IEnumerator PierceBall()
+    {
+        piercing = true;
+        GetComponent<SpriteRenderer>().sprite = pierceBall;
+        yield return new WaitForSeconds(5);
+        piercing = false;
+        GetComponent<SpriteRenderer>().sprite = normalBall;
     }
 }

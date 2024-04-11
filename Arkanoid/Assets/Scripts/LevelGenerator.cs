@@ -10,6 +10,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] float initialPosX, initialPosY;
     [SerializeField] GameObject brickPrefab;
 
+    bool resetGame = false;
+
     GameObject gameManager;
     float currentX, currentY;
     int[,] levelLayout;
@@ -65,13 +67,18 @@ public class LevelGenerator : MonoBehaviour
     {
         if (gameManager.GetComponent<GameManager>().GetListCount() == 0)
         {
+            resetGame = true;
             StartCoroutine(Reset());
         }
     }
 
+    
+
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(2);
-        GenerateLevel();
+        if (resetGame)
+            GenerateLevel();
+        resetGame = false;
     }
 }
