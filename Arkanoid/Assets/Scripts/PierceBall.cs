@@ -23,7 +23,7 @@ public class PierceBall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Paddle"))
         {
-            ball.GetComponent<Ball>().SlowDownBall();
+            ball.GetComponent<Ball>().PiercingBall();
             Destroy(this.gameObject);
         }
 

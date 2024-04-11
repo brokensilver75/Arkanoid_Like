@@ -1076,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PierceBall
       objectReference: {fileID: 0}
+    - target: {fileID: 824861168424085062, guid: ba28a2da19cae0746b52da69730cb454, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2402625067326800101, guid: ba28a2da19cae0746b52da69730cb454, type: 3}
       propertyPath: m_LocalPosition.x
       value: 813.805

@@ -56,6 +56,14 @@ public class Ball : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Brick"))
+        {
+            other.GetComponent<Brick>().BrickDeath();
+        }
+    }
+
     public void SlowDownBall()
     {
         if (!slowed)
@@ -83,8 +91,13 @@ public class Ball : MonoBehaviour
     {
         piercing = true;
         GetComponent<SpriteRenderer>().sprite = pierceBall;
+        gameManager.GetComponent<GameManager>().MakeBricksWeak();
         yield return new WaitForSeconds(5);
         piercing = false;
         GetComponent<SpriteRenderer>().sprite = normalBall;
     }
+
+    
+
+    
 }

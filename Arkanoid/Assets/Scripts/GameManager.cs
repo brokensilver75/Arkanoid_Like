@@ -134,5 +134,24 @@ public class GameManager : MonoBehaviour
             return 0;
         }
     }
+
+    public void MakeBricksWeak()
+    {
+        StartCoroutine(MakeBricksBrittle());
+    }
+
+    IEnumerator MakeBricksBrittle()
+    {
+        foreach (GameObject brick in bricksList)
+        {
+            brick.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+        yield return new WaitForSeconds(5);
+        foreach (GameObject brick in bricksList)
+        {
+            brick.GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+
+    }
     
 }

@@ -102,7 +102,7 @@ MonoBehaviour:
   brick2: {fileID: 21300000, guid: e55c579b182e34767932b9b1bb18949d, type: 3}
   brick3: {fileID: 21300000, guid: a6d39aca3743e4ccf91f3a05baaa869c, type: 3}
   slowBall: {fileID: 4371738801562313593, guid: fa2080101b0bd2c44b71cac8d847920d, type: 3}
-  gameManager: {fileID: 3591708510657882670, guid: 0238c02a30a13c645a8dc0bc2c78fc71, type: 3}
+  pierceBall: {fileID: 824861168424085062, guid: ba28a2da19cae0746b52da69730cb454, type: 3}
 --- !u!61 &133544179358627547
 BoxCollider2D:
   m_ObjectHideFlags: 0

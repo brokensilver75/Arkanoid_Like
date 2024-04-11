@@ -54,14 +54,18 @@ public class Brick: MonoBehaviour
                 this.GetComponent<SpriteRenderer>().sprite = brick3;
                 break;
             default:
-                gameManager.GetComponent<GameManager>().IncreaseScore();
-                //gameManager.GetComponent<GameManager>().SetHighScores(gameManager.GetComponent<GameManager>().GetScore());
-                DropStuff(UnityEngine.Random.Range(0,3));
-                gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
-                Destroy(this.gameObject);
+                BrickDeath();
                 break;
         }
         
+    }
+
+    public void BrickDeath()
+    {
+        gameManager.GetComponent<GameManager>().IncreaseScore();
+        DropStuff(UnityEngine.Random.Range(0, 3));
+        gameManager.GetComponent<GameManager>().RemoveFromList(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     private void DropStuff(int chance)
